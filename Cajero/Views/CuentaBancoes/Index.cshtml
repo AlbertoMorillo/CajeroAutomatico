@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Cajero.Models.CuentaBanco>
+
+@{
+    ViewBag.Title = "Cuenta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Gestión de cuenta bancaria</h2>
+
+<p class="p-2">
+    @Html.ActionLink("Crear nuevo", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Balance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoCuenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PIN)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoCuenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PIN)
+            </td>
+            <td>
+                @Html.ActionLink("Retiro", "Retiro", new { id = item.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Deposito", "Deposito", new { id = item.Id }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Borrar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            var wrong = '@TempData["WRONGPIN"]';
+            var exceed = '@TempData["EXCEED"]';
+
+            if (wrong == 'true') {
+                alert("Pin invalido.");
+            }
+            if (exceed == 'true') {
+                alert("No posee balance suficiente.");
+            }
+        });
+    </script>
+}
