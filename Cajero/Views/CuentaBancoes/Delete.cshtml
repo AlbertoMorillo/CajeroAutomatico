@@ -1,15 +1,15 @@
-﻿@model Cajero.Models.CuentaBanco
+﻿@model Cajero.ViewModel.CuentaBancoViewModel
 
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Borrar Cuenta</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Esta seguro de querer borrar esta cuenta?</h3>
 <div>
-    <h4>CuentaBanco</h4>
+    <h4>Cuenta Banco</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -50,8 +50,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <button class="btn btn-primary" onclick="window.location.href='@Url.Action("Index", "CuentaBancoes")'">Volver</button>
         </div>
     }
 </div>

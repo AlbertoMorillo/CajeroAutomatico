@@ -25,7 +25,10 @@ namespace Cajero.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<CuentaBanco> CuentaBancoes { get; set; }
+        public virtual DbSet<ADMINISTRADOR> ADMINISTRADORs { get; set; }
+        public virtual DbSet<MAQUINA> MAQUINAs { get; set; }
+        public virtual DbSet<USUARIO> USUARIOs { get; set; }
+        public virtual DbSet<ATM_TRANSACTION> ATM_TRANSACTION { get; set; }
+        public virtual DbSet<DETALLE_MONEDA> DETALLE_MONEDA { get; set; }
     }
 }

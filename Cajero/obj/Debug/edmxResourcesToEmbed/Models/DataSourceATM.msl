@@ -1,24 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ATMDBModelStoreContainer" CdmEntityContainer="ATMDBEntities">
-    <EntitySetMapping Name="C__MigrationHistory">
-      <EntityTypeMapping TypeName="ATMDBModel.C__MigrationHistory">
-        <MappingFragment StoreEntitySet="__MigrationHistory">
-          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-          <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+    <EntitySetMapping Name="ADMINISTRADORs">
+      <EntityTypeMapping TypeName="ATMDBModel.ADMINISTRADOR">
+        <MappingFragment StoreEntitySet="ADMINISTRADOR">
+          <ScalarProperty Name="ADMIN_PASSWORD_CD" ColumnName="ADMIN_PASSWORD_CD" />
+          <ScalarProperty Name="USER_ADMIN_NM" ColumnName="USER_ADMIN_NM" />
+          <ScalarProperty Name="USER_ADMIN_CD" ColumnName="USER_ADMIN_CD" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CuentaBancoes">
-      <EntityTypeMapping TypeName="ATMDBModel.CuentaBanco">
-        <MappingFragment StoreEntitySet="CuentaBanco">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Balance" ColumnName="Balance" />
-          <ScalarProperty Name="NoCuenta" ColumnName="NoCuenta" />
-          <ScalarProperty Name="PIN" ColumnName="PIN" />
-          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+    <EntitySetMapping Name="MAQUINAs">
+      <EntityTypeMapping TypeName="ATMDBModel.MAQUINA">
+        <MappingFragment StoreEntitySet="MAQUINA">
+          <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+          <ScalarProperty Name="BALANCE_AMT" ColumnName="BALANCE_AMT" />
+          <ScalarProperty Name="CASH_CANT_CNT" ColumnName="CASH_CANT_CNT" />
+          <ScalarProperty Name="TYPE_DISTINC_CASH_NM" ColumnName="TYPE_DISTINC_CASH_NM" />
+          <ScalarProperty Name="ADDRESS_DESC" ColumnName="ADDRESS_DESC" />
+          <ScalarProperty Name="USER_ADMIN_CD" ColumnName="USER_ADMIN_CD" />
+          <ScalarProperty Name="ID_ATM_CD" ColumnName="ID_ATM_CD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIOs">
+      <EntityTypeMapping TypeName="ATMDBModel.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="BALANCE_USER_CURRENT_AMT" ColumnName="BALANCE_USER_CURRENT_AMT" />
+          <ScalarProperty Name="BALANCE_USER_STOCK_AMT" ColumnName="BALANCE_USER_STOCK_AMT" />
+          <ScalarProperty Name="ACCOUNT_TYPE_DESC" ColumnName="ACCOUNT_TYPE_DESC" />
+          <ScalarProperty Name="CEDULA_CD" ColumnName="CEDULA_CD" />
+          <ScalarProperty Name="USER_PIN_CD" ColumnName="USER_PIN_CD" />
+          <ScalarProperty Name="ACCOUNT_USER_CD" ColumnName="ACCOUNT_USER_CD" />
+          <ScalarProperty Name="Card_Number_ID" ColumnName="Card_Number_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATM_TRANSACTION">
+      <EntityTypeMapping TypeName="ATMDBModel.ATM_TRANSACTION">
+        <MappingFragment StoreEntitySet="ATM_TRANSACTION">
+          <ScalarProperty Name="TRANSACTION_AMT" ColumnName="TRANSACTION_AMT" />
+          <ScalarProperty Name="TRANSACTION_TYPE_NM" ColumnName="TRANSACTION_TYPE_NM" />
+          <ScalarProperty Name="ID_ATM_CD" ColumnName="ID_ATM_CD" />
+          <ScalarProperty Name="TRANSACTION_DT" ColumnName="TRANSACTION_DT" />
+          <ScalarProperty Name="TRANS_NO" ColumnName="TRANS_NO" />
+          <ScalarProperty Name="Card_Number_ID" ColumnName="Card_Number_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DETALLE_MONEDA">
+      <EntityTypeMapping TypeName="ATMDBModel.DETALLE_MONEDA">
+        <MappingFragment StoreEntitySet="DETALLE_MONEDA">
+          <ScalarProperty Name="ID_MAQUINA" ColumnName="ID_MAQUINA" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="BILLETE" ColumnName="BILLETE" />
+          <ScalarProperty Name="ID_MONEDA_DETALLE" ColumnName="ID_MONEDA_DETALLE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

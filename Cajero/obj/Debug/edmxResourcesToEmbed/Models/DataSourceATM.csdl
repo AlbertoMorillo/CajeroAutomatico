@@ -1,27 +1,134 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ATMDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="C__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CuentaBanco">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Balance" Type="Int32" Nullable="false" />
-    <Property Name="NoCuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PIN" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
-    <Property Name="IdUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityContainer Name="ATMDBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-    <EntitySet Name="CuentaBancoes" EntityType="Self.CuentaBanco" />
+    <EntitySet Name="ADMINISTRADORs" EntityType="ATMDBModel.ADMINISTRADOR" />
+    <EntitySet Name="MAQUINAs" EntityType="ATMDBModel.MAQUINA" />
+    <EntitySet Name="USUARIOs" EntityType="ATMDBModel.USUARIO" />
+    <AssociationSet Name="FK__MAQUINA__USER_AD__29572725" Association="ATMDBModel.FK__MAQUINA__USER_AD__29572725">
+      <End Role="ADMINISTRADOR" EntitySet="ADMINISTRADORs" />
+      <End Role="MAQUINA" EntitySet="MAQUINAs" />
+    </AssociationSet>
+    <EntitySet Name="ATM_TRANSACTION" EntityType="ATMDBModel.ATM_TRANSACTION" />
+    <AssociationSet Name="FK__ATM_TRANS__Card___49C3F6B7" Association="ATMDBModel.FK__ATM_TRANS__Card___49C3F6B7">
+      <End Role="USUARIO" EntitySet="USUARIOs" />
+      <End Role="ATM_TRANSACTION" EntitySet="ATM_TRANSACTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ATM_TRANS__ID_AT__4AB81AF0" Association="ATMDBModel.FK__ATM_TRANS__ID_AT__4AB81AF0">
+      <End Role="MAQUINA" EntitySet="MAQUINAs" />
+      <End Role="ATM_TRANSACTION" EntitySet="ATM_TRANSACTION" />
+    </AssociationSet>
+    <EntitySet Name="DETALLE_MONEDA" EntityType="ATMDBModel.DETALLE_MONEDA" />
+    <AssociationSet Name="FK_DETALLE_MONEDA_MAQUINA" Association="ATMDBModel.FK_DETALLE_MONEDA_MAQUINA">
+      <End Role="MAQUINA" EntitySet="MAQUINAs" />
+      <End Role="DETALLE_MONEDA" EntitySet="DETALLE_MONEDA" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="ADMINISTRADOR">
+    <Key>
+      <PropertyRef Name="USER_ADMIN_CD" />
+    </Key>
+    <Property Name="USER_ADMIN_CD" Type="Int32" Nullable="false" />
+    <Property Name="USER_ADMIN_NM" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="ADMIN_PASSWORD_CD" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MAQUINAs" Relationship="ATMDBModel.FK__MAQUINA__USER_AD__29572725" FromRole="ADMINISTRADOR" ToRole="MAQUINA" />
+  </EntityType>
+  <EntityType Name="MAQUINA">
+    <Key>
+      <PropertyRef Name="ID_ATM_CD" />
+    </Key>
+    <Property Name="ID_ATM_CD" Type="Int32" Nullable="false" />
+    <Property Name="USER_ADMIN_CD" Type="Int32" Nullable="false" />
+    <Property Name="ADDRESS_DESC" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="TYPE_DISTINC_CASH_NM" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="CASH_CANT_CNT" Type="Int32" Nullable="false" />
+    <Property Name="BALANCE_AMT" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ADMINISTRADOR" Relationship="ATMDBModel.FK__MAQUINA__USER_AD__29572725" FromRole="MAQUINA" ToRole="ADMINISTRADOR" />
+    <NavigationProperty Name="ATM_TRANSACTION" Relationship="ATMDBModel.FK__ATM_TRANS__ID_AT__4AB81AF0" FromRole="MAQUINA" ToRole="ATM_TRANSACTION" />
+    <NavigationProperty Name="DETALLE_MONEDA" Relationship="ATMDBModel.FK_DETALLE_MONEDA_MAQUINA" FromRole="MAQUINA" ToRole="DETALLE_MONEDA" />
+    <Property Name="ESTATUS" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="Card_Number_ID" />
+    </Key>
+    <Property Name="Card_Number_ID" Type="Int32" Nullable="false" />
+    <Property Name="ACCOUNT_USER_CD" Type="Int32" Nullable="false" />
+    <Property Name="USER_PIN_CD" Type="Int32" Nullable="false" />
+    <Property Name="CEDULA_CD" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="ACCOUNT_TYPE_DESC" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="BALANCE_USER_STOCK_AMT" Type="Int32" Nullable="false" />
+    <Property Name="BALANCE_USER_CURRENT_AMT" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ATM_TRANSACTION" Relationship="ATMDBModel.FK__ATM_TRANS__Card___49C3F6B7" FromRole="USUARIO" ToRole="ATM_TRANSACTION" />
+  </EntityType>
+  <Association Name="FK__MAQUINA__USER_AD__29572725">
+    <End Type="ATMDBModel.ADMINISTRADOR" Role="ADMINISTRADOR" Multiplicity="1" />
+    <End Type="ATMDBModel.MAQUINA" Role="MAQUINA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ADMINISTRADOR">
+        <PropertyRef Name="USER_ADMIN_CD" />
+      </Principal>
+      <Dependent Role="MAQUINA">
+        <PropertyRef Name="USER_ADMIN_CD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ATM_TRANSACTION">
+    <Key>
+      <PropertyRef Name="TRANS_NO" />
+    </Key>
+    <Property Name="Card_Number_ID" Type="Int32" Nullable="false" />
+    <Property Name="TRANS_NO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="TRANSACTION_DT" Type="DateTime" Nullable="false" />
+    <Property Name="ID_ATM_CD" Type="Int32" Nullable="false" />
+    <Property Name="TRANSACTION_TYPE_NM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TRANSACTION_AMT" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="USUARIO" Relationship="ATMDBModel.FK__ATM_TRANS__Card___49C3F6B7" FromRole="ATM_TRANSACTION" ToRole="USUARIO" />
+    <NavigationProperty Name="MAQUINA" Relationship="ATMDBModel.FK__ATM_TRANS__ID_AT__4AB81AF0" FromRole="ATM_TRANSACTION" ToRole="MAQUINA" />
+  </EntityType>
+  <Association Name="FK__ATM_TRANS__Card___49C3F6B7">
+    <End Type="ATMDBModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+    <End Type="ATMDBModel.ATM_TRANSACTION" Role="ATM_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="Card_Number_ID" />
+      </Principal>
+      <Dependent Role="ATM_TRANSACTION">
+        <PropertyRef Name="Card_Number_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ATM_TRANS__ID_AT__4AB81AF0">
+    <End Type="ATMDBModel.MAQUINA" Role="MAQUINA" Multiplicity="1" />
+    <End Type="ATMDBModel.ATM_TRANSACTION" Role="ATM_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAQUINA">
+        <PropertyRef Name="ID_ATM_CD" />
+      </Principal>
+      <Dependent Role="ATM_TRANSACTION">
+        <PropertyRef Name="ID_ATM_CD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DETALLE_MONEDA">
+    <Key>
+      <PropertyRef Name="ID_MONEDA_DETALLE" />
+    </Key>
+    <Property Name="ID_MONEDA_DETALLE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BILLETE" Type="Int32" Nullable="false" />
+    <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
+    <Property Name="ID_MAQUINA" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MAQUINA" Relationship="ATMDBModel.FK_DETALLE_MONEDA_MAQUINA" FromRole="DETALLE_MONEDA" ToRole="MAQUINA" />
+  </EntityType>
+  <Association Name="FK_DETALLE_MONEDA_MAQUINA">
+    <End Type="ATMDBModel.MAQUINA" Role="MAQUINA" Multiplicity="1" />
+    <End Type="ATMDBModel.DETALLE_MONEDA" Role="DETALLE_MONEDA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAQUINA">
+        <PropertyRef Name="ID_ATM_CD" />
+      </Principal>
+      <Dependent Role="DETALLE_MONEDA">
+        <PropertyRef Name="ID_MAQUINA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

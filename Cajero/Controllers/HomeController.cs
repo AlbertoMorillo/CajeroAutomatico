@@ -15,14 +15,14 @@ namespace Cajero.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Aplicacion cajero automatico. Proyecto de Analisis y Diseño II.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Grupo 3. Cuatrimestre Mayo-Agosto 2021";
 
             return View();
         }

@@ -76,8 +76,8 @@ C:\Users\Alberto Morillo\Documents\Visual Studio 2019\Projects\ATM\Cajero\Cajero
 C:\Users\Alberto Morillo\Documents\Visual Studio 2019\Projects\ATM\Cajero\Cajero\bin\Newtonsoft.Json.xml
 C:\Users\Alberto Morillo\Documents\Visual Studio 2019\Projects\ATM\Cajero\Cajero\bin\Antlr3.Runtime.pdb
 C:\Users\Alberto Morillo\Documents\Visual Studio 2019\Projects\ATM\Cajero\Cajero\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Alberto Morillo\Documents\Visual Studio 2019\Projects\ATM\Cajero\Cajero\obj\Debug\Cajero.csproj.AssemblyReference.cache
 C:\Users\Alberto Morillo\Documents\Visual Studio 2019\Projects\ATM\Cajero\Cajero\obj\Debug\Cajero.csproj.CoreCompileInputs.cache
 C:\Users\Alberto Morillo\Documents\Visual Studio 2019\Projects\ATM\Cajero\Cajero\obj\Debug\Cajero.csproj.CopyComplete
 C:\Users\Alberto Morillo\Documents\Visual Studio 2019\Projects\ATM\Cajero\Cajero\obj\Debug\Cajero.dll
 C:\Users\Alberto Morillo\Documents\Visual Studio 2019\Projects\ATM\Cajero\Cajero\obj\Debug\Cajero.pdb
-C:\Users\Alberto Morillo\Documents\Visual Studio 2019\Projects\ATM\Cajero\Cajero\obj\Debug\Cajero.csprojAssemblyReference.cache

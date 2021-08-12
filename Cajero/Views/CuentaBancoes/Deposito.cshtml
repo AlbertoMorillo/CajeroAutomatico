@@ -18,13 +18,6 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DisplayFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
-        </div>
-    </div>
     @Html.HiddenFor(model => model.Balance)
 
     <div class="form-group">
@@ -34,24 +27,48 @@
             @Html.ValidationMessageFor(model => model.NoCuenta, "", new { @class = "text-danger" })
         </div>
     </div>
-    @Html.HiddenFor(model => model.NoCuenta)
-
     <div class="form-group">
-        @Html.LabelFor(model => model.PIN, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.typeAccount, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.PIN, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PIN, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Deposito, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Deposito, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DisplayFor(model => model.typeAccount, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Deposito, "", new { @class = "text-danger" })
         </div>
     </div>
+    @Html.HiddenFor(model => model.NoCuenta)
 
+
+    @Html.HiddenFor(model => model.PIN)
+
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+    <label class="btn btn-primary">
+        <input type="radio" name="options" id="cien" value="100" autocomplete="off">
+        100
+    </label>
+    <label class="btn btn-primary">
+        <input type="radio" name="options" id="doscientos" value="200" autocomplete="off">
+        200
+    </label>
+    <label class="btn btn-primary">
+        <input type="radio" name="options" id="quinientos" value="500" autocomplete="off">500
+
+    </label>
+
+    <label class="btn btn-primary">
+        <input type="radio" name="options" id="mil" value="1000" autocomplete="off">1000
+    </label>
+
+    <label class="btn btn-primary">
+        <input type="radio" name="options" id="dosmil" value="2000" autocomplete="off">2000
+    </label>
+    <label class="btn btn-primary">
+        Otra cantidad @Html.EditorFor(model => model.Deposito, new { htmlAttributes = new { @class = "form-control", @placeholder = "Otra cantidad", @min = "0", @max = "999999" } })
+    </label>
+    @Html.ValidationMessageFor(model => model.Deposito, "", new { @class = "text-danger" })
+
+</div>
+    @Html.HiddenFor(model => model.Cedula)
+    @Html.HiddenFor(model => model.typeAccount)
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Grabar" class="btn btn-success" />
@@ -61,5 +78,5 @@
 }
 
 <p>
-    @Html.ActionLink("Volver", "Index",new { @class="btn btn-danger"})
+    @Html.ActionLink("Volver", "Inicio",new { @class="btn btn-danger"})
 </p>

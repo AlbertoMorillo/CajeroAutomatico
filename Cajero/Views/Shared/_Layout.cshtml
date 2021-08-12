@@ -6,6 +6,8 @@
     <title>@ViewBag.Title - Mi Cajero automático</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -19,6 +21,16 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    @if (Session["UserName"] != null)
+                    {
+
+                        <li class="text-uppercase text-primary">Bienvenido @Session["UserName"].ToString() </li>
+                        <li>@Html.ActionLink("Logout", "Logout", "ADMINISTRADORs")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "ADMINISTRADORs")</li>
+                    }
                 </ul>
             </div>
         </div>
@@ -34,5 +46,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.js"></script>
 </body>
 </html>
